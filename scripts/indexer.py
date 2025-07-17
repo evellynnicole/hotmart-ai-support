@@ -8,7 +8,7 @@ from src.rag.qdrant import QdrantService
 settings = Config()
 collection_name = 'hotmart'
 
-df = pd.read_csv('hotmart-ai-support/hormart_dataset.csv')
+df = pd.read_csv('hormart_dataset.csv')
 
 documents = []
 for _, row in df.iterrows():
@@ -23,7 +23,8 @@ embedding_service = EmbeddingService(**settings.openai_settings())
 embeddings = embedding_service.get_all_embeddings()
 
 qdrant_service = QdrantService(
-    url=settings.qdrant_settings()['url'],
+    host=settings.qdrant_settings()['host'],
+    port=settings.qdrant_settings()['port'],
     collection_name=collection_name,
     dense_embeddings=embeddings['dense'],
     sparse_embeddings=embeddings['sparse'],

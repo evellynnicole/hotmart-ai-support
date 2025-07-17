@@ -53,7 +53,7 @@ class QdrantService:
             'sparse_embedding': self.sparse_embeddings,
             'host': self.host,
             'port': self.port,
-            'prefer_grpc': True,
+            'prefer_grpc': False,
             'collection_name': self.collection_name,
             'retrieval_mode': RetrievalMode.HYBRID,
             'content_payload_key': 'page_content',
