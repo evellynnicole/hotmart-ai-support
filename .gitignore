@@ -177,3 +177,8 @@ pyrightconfig.json
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
 
+# Dados persistentes do Qdrant (indexação local)
+qdrant_data/
+qdrant_config/production.yaml  # se for um config local/sensível
+
+
