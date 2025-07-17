@@ -85,7 +85,7 @@ Abaixo está o fluxo dos agentes do sistema de atendimento inteligente, implemen
 | **Router**           | Classifica a intenção da pergunta e direciona para o agente apropriado: `faq`, `journey` ou `atendente` humano. |
 | **FAQ Agent**        | Utiliza RAG para responder perguntas frequentes sobre produtos, serviços e termos da Hotmart. |
 | **Journey Agent**    | Especialista em dúvidas sobre os programas *Hotmart Journey Stars* e *Legacy*. Usa informações da base em prompt + dados financeiros personalizados. |
-| **Customer Service** | Mensagem final do atendente para o usuário quando há a necessidade de atendimento |
+| **Customer Service** | Mensagem final do atendente para o usuário quando há a necessidade de atendimento. |
 
 
 ---
