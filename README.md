@@ -11,7 +11,7 @@ Projetado para responder dúvidas de clientes sobre programas como *Hotmart Jour
 
 ##  Funcionalidades
 
-- **Agente Multi-Especializado**: pipeline de agentes (LangGraph) para lidar com diferentes tópicos (Journey, FAQ, Billing).
+- **Agente Multi-Especializado**: pipeline de agentes (LangGraph) para lidar com diferentes tópicos (Journey, FAQ).
 - **RAG com Qdrant**: busca por similaridade usando embeddings e recuperação de contexto relevante.
 - **API FastAPI**: interface REST para interação com o sistema.
 - **Mock de Dados Financeiros**: simulação de faturas e informações de clientes.
