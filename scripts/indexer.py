@@ -8,7 +8,7 @@ from src.rag.qdrant import QdrantService
 settings = Config()
 collection_name = settings.qdrant_settings()['collection_name']
 
-df = pd.read_csv('hormart_dataset.csv')
+df = pd.read_csv('hotmart_dataset.csv')
 
 documents = []
 for _, row in df.iterrows():

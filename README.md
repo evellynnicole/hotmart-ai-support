@@ -4,6 +4,10 @@ Sistema de atendimento inteligente com agentes especializados e busca em base de
 Projetado para responder dúvidas de clientes sobre programas como *Hotmart Journey Stars* e *Legacy*, de forma automática, contextual e precisa.
 
 ---
+## Relatório
+
+📄 [relatorio_hotmart_ai_support.pdf](./relatorio_hotmart_ai_support.pdf)
+---
 
 ##  Funcionalidades
 
@@ -62,6 +66,27 @@ poetry run uvicorn src.api.main:app --reload
 ```bash
 poetry run python -m scripts.indexer
 ```
+
+---
+
+##  Arquitetura dos Agentes (LangGraph)
+
+Abaixo está o fluxo dos agentes do sistema de atendimento inteligente, implementado com LangGraph:
+
+![Fluxo de Agentes](src/ai_engine/graph_visualization/chat_flow.png)
+
+---
+
+### Descrição dos Agentes
+
+| Agente                | Descrição |
+|----------------------|-----------|
+| **Guardrail**        | Verifica se a mensagem do usuário é apropriada e decide se o atendimento continua ou é encerrado. Atua como camada de segurança inicial. |
+| **Router**           | Classifica a intenção da pergunta e direciona para o agente apropriado: `faq`, `journey` ou `atendente` humano. |
+| **FAQ Agent**        | Utiliza RAG para responder perguntas frequentes sobre produtos, serviços e termos da Hotmart. |
+| **Journey Agent**    | Especialista em dúvidas sobre os programas *Hotmart Journey Stars* e *Legacy*. Usa informações da base em prompt + dados financeiros personalizados. |
+| **Customer Service** | Mensagem final do atendente para o usuário quando há a necessidade de atendimento |
+
 
 ---
 
