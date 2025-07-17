@@ -82,15 +82,13 @@ class QdrantService:
         self, documents: List[Any]
     ) -> Optional[QdrantVectorStore]:
         """
-        Cria uma nova coleção Qdrant e adiciona documentos.
-
-        Args:
-            documents: Lista de documentos a serem adicionados.
-
-        Returns:
-            Conexão estabelecida ou None em caso de falha.
+        Cria uma nova coleção Qdrant e adiciona documentos, se ela não existir.
         """
         try:
+            if self.client.collection_exists(self.collection_name):
+                logger.info(f"Collection '{self.collection_name}' already exists. Skipping creation.")
+                return self.collection_connect()
+
             logger.info('Creating collection and add documents')
             self.connection = QdrantVectorStore.from_documents(
                 documents=documents, **self._get_store_params()

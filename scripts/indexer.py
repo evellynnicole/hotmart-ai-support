@@ -6,7 +6,7 @@ from src.rag.embeddings import EmbeddingService
 from src.rag.qdrant import QdrantService
 
 settings = Config()
-collection_name = 'hotmart'
+collection_name = settings.qdrant_settings()['collection_name']
 
 df = pd.read_csv('hormart_dataset.csv')
 
