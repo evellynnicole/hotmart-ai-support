@@ -1,0 +1,21 @@
+[
+  {
+    "user_id": 123,
+    "name": "Maria",
+    "total_revenue_last_12m": 125000.00,
+    "total_revenue_all_time": 560000.00,
+    "has_active_product": true,
+    "country": "BR",
+    "has_account_manager": false
+  },
+  {
+    "user_id": 456,
+    "name": "João",
+    "total_revenue_last_12m": 15000.00,
+    "total_revenue_all_time": 12000.00,
+    "has_active_product": true,
+    "country": "BR",
+    "has_account_manager": true
+  }
+  ]
+  
