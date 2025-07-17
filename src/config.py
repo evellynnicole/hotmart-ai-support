@@ -6,6 +6,7 @@ load_dotenv()
 
 
 class Config:
+    @staticmethod
     def qdrant_settings():
         return {
             'host': os.getenv('QDRANT_HOST'),
@@ -13,5 +14,6 @@ class Config:
             'collection_name': os.getenv('COLLECTION_NAME'),
         }
 
+    @staticmethod
     def openai_settings():
         return {'openai_api_key': os.getenv('OPENAI_API_KEY')}

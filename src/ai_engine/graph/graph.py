@@ -15,6 +15,7 @@ class ChatGraph:
         self._add_edges()
         self.graph = self.graph_builder.compile()
 
+    @staticmethod
     def _should_continue_tools_faq(state: ChatGraphState) -> str:
         messages = state['messages']
         last_message = messages[-1]
@@ -23,6 +24,7 @@ class ChatGraph:
         else:
             return END
 
+    @staticmethod
     def _should_continue_tools_journey(state: ChatGraphState) -> str:
         messages = state['messages']
         last_message = messages[-1]
@@ -31,6 +33,7 @@ class ChatGraph:
         else:
             return END
 
+    @staticmethod
     def _should_continue_router(state: ChatGraphState) -> str:
         router_response = state['router_response']
         if router_response == 'faq':
