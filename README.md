@@ -118,7 +118,17 @@ Essa abordagem melhora significativamente a **precisão em FAQs e artigos curtos
 
 ---
 
+## Dados Mockados de Faturamento
 
+O sistema simula informações reais de faturamento dos usuários para fornecer respostas personalizadas nos programas **Hotmart Journey Stars** e **Legacy**.
+
+Esses dados são carregados automaticamente durante a execução do agente e usados para enriquecer a resposta com base no `user_id` informado.
+
+### 📄 Arquivo de origem:
+
+`src/data/mock_billing_data.json`
+
+---
 
 ##  API - Exemplo de Uso
 
