@@ -179,6 +179,6 @@ pyrightconfig.json
 
 # Dados persistentes do Qdrant (indexação local)
 qdrant_data/
-qdrant_config/production.yaml  # se for um config local/sensível
+qdrant_config/production.yaml  
 
 
