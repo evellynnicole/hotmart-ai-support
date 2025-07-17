@@ -86,7 +86,7 @@ class QdrantService:
         """
         try:
             if self.client.collection_exists(self.collection_name):
-                logger.info(f"Collection '{self.collection_name}' already exists. Skipping creation.")
+                logger.info(f"Collection '{self.collection_name}' already exists.")
                 return self.collection_connect()
 
             logger.info('Creating collection and add documents')

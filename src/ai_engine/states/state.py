@@ -8,5 +8,6 @@ class ChatGraphState(MessagesState):
 
     node_name: str = ''
     router_response: str = ''
+    guardrail_response: str = ''
     user_id: int = None
     sources: List[Dict[str, Union[str, None]]] = []

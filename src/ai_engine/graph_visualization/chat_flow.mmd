@@ -5,6 +5,7 @@ config:
 ---
 graph TD;
 	__start__([<p>__start__</p>]):::first
+	guardrail_node(guardrail_node)
 	router_node(router_node)
 	faq_agent_node(faq_agent_node)
 	tools_faq(tools_faq)
@@ -12,9 +13,11 @@ graph TD;
 	journey_agent_node(journey_agent_node)
 	customer_service_node(customer_service_node)
 	__end__([<p>__end__</p>]):::last
-	__start__ --> router_node;
+	__start__ --> guardrail_node;
 	faq_agent_node -.-> __end__;
 	faq_agent_node -.-> tools_faq;
+	guardrail_node -.-> __end__;
+	guardrail_node -.-> router_node;
 	journey_agent_node -.-> __end__;
 	journey_agent_node -.-> tools_journey;
 	router_node -.-> customer_service_node;

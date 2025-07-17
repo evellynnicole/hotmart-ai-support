@@ -2,6 +2,7 @@ from langgraph.graph import END, START, StateGraph
 
 from src.ai_engine.nodes.customer_service_node import CustomerServiceNode
 from src.ai_engine.nodes.faq_agent_node import FAQAgentNode
+from src.ai_engine.nodes.guardrail_node import GuardrailNode
 from src.ai_engine.nodes.journey_agent_node import JourneyAgentNode
 from src.ai_engine.nodes.router_node import RouterNode
 from src.ai_engine.nodes.tools_node import tool_node_faq, tool_node_journey
@@ -14,6 +15,14 @@ class ChatGraph:
         self._add_nodes()
         self._add_edges()
         self.graph = self.graph_builder.compile()
+
+    @staticmethod
+    def _should_continue_guardrail(state: ChatGraphState) -> str:
+        guardrail_response = state['guardrail_response']
+        if guardrail_response == 'router':
+            return 'router_node'
+        else:
+            return END
 
     @staticmethod
     def _should_continue_tools_faq(state: ChatGraphState) -> str:
@@ -46,6 +55,7 @@ class ChatGraph:
             return END
 
     def _add_nodes(self):
+        self.graph_builder.add_node('guardrail_node', GuardrailNode())
         self.graph_builder.add_node('router_node', RouterNode())
         self.graph_builder.add_node('faq_agent_node', FAQAgentNode())
         self.graph_builder.add_node('tools_faq', tool_node_faq)
@@ -56,7 +66,12 @@ class ChatGraph:
         )
 
     def _add_edges(self):
-        self.graph_builder.add_edge(START, 'router_node')
+        self.graph_builder.add_edge(START, 'guardrail_node')
+        self.graph_builder.add_conditional_edges(
+            'guardrail_node',
+            self._should_continue_guardrail,
+            ['router_node', END],
+        )
         self.graph_builder.add_conditional_edges(
             'router_node',
             self._should_continue_router,
