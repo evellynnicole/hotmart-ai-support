@@ -21,12 +21,31 @@ Projetado para responder dúvidas de clientes sobre programas como *Hotmart Jour
 
 ## ▶ Como Rodar o Projeto
 
+> ⚠️ **Antes de tudo: configure o `.env`**
+
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+
+```env
+# Qdrant configuration
+QDRANT_HOST=qdrant
+QDRANT_PORT=6333
+
+# OpenAI configuration
+OPENAI_API_KEY=your-openai-api-key
+
+# Qdrant collection name
+COLLECTION_NAME=hotmart
+```
+
+> Se estiver rodando localmente fora do Docker, altere `QDRANT_HOST=qdrant` para `QDRANT_HOST=localhost`.
+
+
 ###  Opção 1: Com Docker (recomendado para produção e testes rápidos)
 
 Não é necessário instalar **Poetry** nem gerenciar dependências manualmente. Basta rodar:
 
 ```bash
-git clone <url-do-repositório>
+git clone https://github.com/evellynnicole/hotmart-ai-support.git
 cd hotmart-ai-support
 docker compose up -d --build
 ```
@@ -50,15 +69,14 @@ A aplicação estará disponível em:
 #### 2. Instalação
 
 ```bash
-git clone <url-do-repositório>
+git clone https://github.com/evellynnicole/hotmart-ai-support.git
 cd hotmart-ai-support
 poetry install
 ```
 
-#### 3. Rodar a API localmente
-
+### 3. Ativar o ambiente virtuak
 ```bash
-poetry run uvicorn src.api.main:app --reload
+poetry shell
 ```
 
 #### 4. Indexar manualmente (se necessário)
@@ -67,6 +85,11 @@ poetry run uvicorn src.api.main:app --reload
 poetry run python -m scripts.indexer
 ```
 
+#### 5. Rodar a API localmente
+
+```bash
+poetry run uvicorn src.api.main:app --reload
+```
 ---
 
 ##  Arquitetura dos Agentes (LangGraph)
@@ -85,7 +108,7 @@ Abaixo está o fluxo dos agentes do sistema de atendimento inteligente, implemen
 | **Router**           | Classifica a intenção da pergunta e direciona para o agente apropriado: `faq`, `journey` ou `atendente` humano. |
 | **FAQ Agent**        | Utiliza RAG para responder perguntas frequentes sobre produtos, serviços e termos da Hotmart. |
 | **Journey Agent**    | Especialista em dúvidas sobre os programas *Hotmart Journey Stars* e *Legacy*. Usa informações da base em prompt + dados financeiros personalizados. |
-| **Customer Service** | Mensagem final do atendente para o usuário quando há a necessidade de atendimento. |
+| **Customer Service** | Mensagem final do atendente para o usuário quando há a necessidade de atendimento |
 
 
 ---
@@ -109,27 +132,6 @@ Abaixo está o fluxo dos agentes do sistema de atendimento inteligente, implemen
 ├── .env.example          # Variáveis de ambiente
 └── README.md             # Este arquivo :)
 ```
-
----
-
-##  Configuração `.env`
-
-Crie um arquivo `.env` na raiz com o seguinte conteúdo:
-
-```env
-# Qdrant configuration
-QDRANT_HOST=qdrant
-QDRANT_PORT=6333
-
-# OpenAI configuration
-OPENAI_API_KEY=your-openai-api-key
-
-# Qdrant collection name
-COLLECTION_NAME=hotmart
-```
-
->  Se estiver rodando localmente fora do Docker, altere `QDRANT_HOST` para `localhost`.
-
 ---
 
 ##  Modelo LLM Utilizado
